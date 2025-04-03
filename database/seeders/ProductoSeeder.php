@@ -13,12 +13,31 @@ class ProductoSeeder extends Seeder
      */
     public function run(): void
     {
-        Producto::create([
-            'nombre_producto' => 'Teclado mecanico',
-            'descripcion' => 'Teclado mecanico con switch rojos',
-            'precio' => 56.56,
-            'imagen' => asset('storage/img/teclado.jpg'),
-            'id_categoria' => 2,
-        ]);
+
+        collect([
+            [
+                'nombre_producto' => 'Teclado mecanico',
+                'descripcion' => 'Teclado mecanico con switch rojos',
+                'precio' => 56.56,
+                'imagen' => asset('storage/img/teclado.jpg'),
+                'id_categoria' => 3,
+            ],
+            [
+                'nombre_producto' => 'Guitarra electrica',
+                'descripcion' => 'Guitarra electrica Gibson',
+                'precio' => 499.95,
+                'imagen' => asset('storage/img/guitarra.jpg'),
+                'id_categoria' => 2,
+            ],
+            [
+                'nombre_producto' => 'Controll Switch',
+                'descripcion' => 'Control de nintendo switch pro',
+                'precio' => 79.95,
+                'imagen' => asset('storage/img/control.jpg'),
+                'id_categoria' => 1,
+            ],
+        ])->each(function ($producto) {
+            Producto::create($producto);
+        });
     }
 }

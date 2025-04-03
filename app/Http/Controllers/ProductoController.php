@@ -10,7 +10,7 @@ class ProductoController extends Controller
     public function index(){
         try{
             $productos = Producto::with('categoria')->get();
-            return response()->json($productos);
+            return response()->json(['data'=>$productos]);
         }catch (\Exception $e){
             return response()->json(['error' => $e->getMessage()], 500);
         }
