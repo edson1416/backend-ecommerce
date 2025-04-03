@@ -14,12 +14,6 @@ class RutasSeeder extends Seeder
      */
     public function run(): void
     {
-        //Creando ruta padre
-        $categorias = DB::table('rutas')->insertGetId([
-           'label' => 'Categorias',
-           'icon' => 'pi pi-bars',
-        ]);
-
         collect([
             [
                 'label' => 'Inicio',
@@ -31,6 +25,15 @@ class RutasSeeder extends Seeder
                 'icon' => 'pi pi-star',
                 'to' => '/favoritos'
             ],
+        ])->each(function($item) {
+            Rutas::create($item);
+        });
+        //Creando ruta padre
+        $categorias = DB::table('rutas')->insertGetId([
+            'label' => 'Categorias',
+            'icon' => 'pi pi-bars',
+        ]);
+        collect([
             [
                 'label' => 'Gamer',
                 'icon' => 'pi pi-headphones',
@@ -47,7 +50,7 @@ class RutasSeeder extends Seeder
                 'icon' => 'pi pi-user',
                 'to' => '/mi-cuenta'
             ],
-        ])->each(function($item) {
+        ])->each(function($item){
             Rutas::create($item);
         });
     }

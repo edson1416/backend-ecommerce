@@ -36,6 +36,7 @@ class AuthController extends Controller
 
     public function userInfo(): JsonResponse {
        $usuario = request()->user();
+       $usuario->getRoleNames();
        return response()->json(['user' => $usuario]);
     }
 
