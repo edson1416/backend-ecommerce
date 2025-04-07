@@ -22,4 +22,5 @@ Route::group(['prefix' => 'rutas'],function(){
 });
 Route::middleware('auth:sanctum')->group(function(){
    Route::get('user-info',[AuthController::class,'userInfo']);
+   Route::post('logout',[AuthController::class,'logout']);
 });
