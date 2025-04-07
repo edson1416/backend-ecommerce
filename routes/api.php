@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaProductoController;
 use App\Http\Controllers\NivelClienteController;
+use App\Http\Controllers\PedidoController;
 
 Route::post('login',[AuthController::class,'login']);
 
@@ -25,4 +26,9 @@ Route::group(['prefix' => 'rutas'],function(){
 Route::middleware('auth:sanctum')->group(function(){
    Route::get('user-info',[AuthController::class,'userInfo']);
    Route::post('logout',[AuthController::class,'logout']);
+
+   Route::group(['prefix'=>'pedidos'],function(){
+       Route::post('/',[PedidoController::class,'crearPedido']);
+   });
+
 });
