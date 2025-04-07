@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             CategoriaProductoSeeder::class,
             ProductoSeeder::class,
             RutasSeeder::class,
+            NivelClienteSeeder::class,
+            ClienteSeeder::class,
         ]);
     }
 }

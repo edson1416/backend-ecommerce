@@ -46,6 +46,10 @@ class AuthController extends Controller
     public function userInfo(): JsonResponse {
        $usuario = request()->user();
        $usuario->getRoleNames();
+       $rol = $usuario->getRoleNames();
+       if($rol[0] == 'cliente'){
+           $usuario->cliente->nivel;
+       }
        return response()->json(['user' => $usuario]);
     }
 
