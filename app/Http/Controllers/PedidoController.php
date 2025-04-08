@@ -70,10 +70,26 @@ class PedidoController extends Controller
                 $pedido->total = $total;
                 $pedido->save();
 
-                return response()->json(['message'=>"Pedido registrado"],201);
+                $nPedidos = Pedido::where('cliente_id', $cliente->id)->get()->count();
+
+                if($nPedidos > 5 && $nPedidos < 10){
+                    $cliente->nivel_id = 2;
+                }elseif ($nPedidos > 10 && $nPedidos < 20){
+                    $cliente->nivel_id = 3;
+                }
+                elseif ($nPedidos > 20){
+                    $cliente->nivel_id = 4;
+                }
+                $cliente->save();
+
+                return response()->json(['message'=>"Pedido registrado con exito"],201);
             }
         }catch (\Exception $e){
             return response()->json(['error'=>$e->getMessage()]);
         }
+    }
+
+    public function contarPedidos($idCliente){
+
     }
 }
